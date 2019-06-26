@@ -16,6 +16,10 @@ func (c *UserController) Get() {
 	c.Data["Website"] = "beego.me"
 	c.Data["Email"] = "astaxie@gmail.com"
 	fmt.Println("Controller被调用到了")
+	var users []models.User
+	users = models.GetUser()
+	c.Data["json"] = users
+	c.ServeJSON()
 	c.TplName = "user.html"
 }
 

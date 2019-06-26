@@ -32,10 +32,17 @@ func Creat(name string, nickname string) (user User) {
 	return *newuser
 }
 
-func GetUser() (user User) {
+func GetUser() (user []User) {
 	o := orm.NewOrm()
 	o.Using("default") // 默认使用 default，你可以指定为其他数据库
 	fmt.Println("models被调用到了")
 	qs := o.QueryTable("user")
-	return *newuser
+	var users []User
+	var count int
+	if count, err := qs.All(&users); err == nil {
+		fmt.Println("查询数据成功")
+		fmt.Println(count)
+	}
+	fmt.Println(count)
+	return users
 }
