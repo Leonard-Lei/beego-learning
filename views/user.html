@@ -6,11 +6,17 @@
     </header>
     <body>
         <div>这是用户中心页面</div>
-        {{range $index, $elem := .list}}
-        <div> {{$index}} - {{$elem.name}} - of {{$elem.nickname}}</div>
-        {{end}}
-        <form>
-            
-        </form>
+        <div>
+            <ul>
+                {{range $index, $term := .list}}
+                <li>
+                    <span>{{$term.Id}}</span>
+                    <span>{{$term.Name}}</span>
+                    <span>{{$term.Nickname}}</span>
+                    <a href="/user/delete/{{$term.Id}}">删除</a>
+                </li>
+                {{end}}
+            </ul>
+        </div>
     </body>
 </html>

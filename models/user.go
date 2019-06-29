@@ -25,9 +25,8 @@ func Creat(name string, nickname string) (user User) {
 	o.Using("default") // 默认使用 default，你可以指定为其他数据库
 	fmt.Println("models被调用到了")
 	newuser := new(User)
-	newuser.Id = 1
-	newuser.Name = "这是名称"
-	newuser.Nickname = "这是昵称"
+	newuser.Name = name
+	newuser.Nickname = nickname
 	o.Insert(newuser)
 	return *newuser
 }
@@ -45,4 +44,22 @@ func GetUser() (user []User) {
 	}
 	fmt.Println(count)
 	return users
+}
+
+func Delete(id int64) {
+	o := orm.NewOrm()
+	o.Using("default") // 默认使用 default，你可以指定为其他数据库
+	newuser := new(User)
+	newuser.Id = id
+	o.Delete(newuser)
+}
+
+func GetOneUser(name string) (user User) {
+	o := orm.NewOrm()
+	o.Using("default") // 默认使用 default，你可以指定为其他数据库
+	user1 := User{Name: name}
+	err := o.Read(&user1, "Name")
+	fmt.Printf("ERR: %v\n", err)
+	fmt.Println(user1.Id, user1.Name)
+	return user1
 }
