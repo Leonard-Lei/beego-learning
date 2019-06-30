@@ -13,5 +13,5 @@ func init() {
 	beego.Router("/user/form", &controllers.UserController{}, "get:UserForm")
 	beego.Router("/user/delete/:id", &controllers.UserController{}, "get:DeleteUser")
 	beego.Router("/user/toLogin", &controllers.UserController{}, "get:GetloginPage")
-	beego.Router("/user/login", &controllers.UserController{}, "post:Login")
+	//beego.Router("/user/login", &controllers.UserController{}, "post:Login")
 }
